@@ -1,11 +1,11 @@
-FROM ghcr.io/kiwix/kiwix-tools:latest
+FROM ghcr.io/kiwix/kiwix-tools:latest-debian
 
-# Install extra tools you need
-RUN apk add --no-cache \
+RUN apt-get update && apt-get install -y \
     ocrmypdf \
     imagemagick \
     python3 \
-    py3-pip
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -13,3 +13,4 @@ COPY entrypoint.sh /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
 
 ENTRYPOINT ["/app/entrypoint.sh"]
+
