@@ -1,4 +1,4 @@
-FROM kiwix/kiwix-tools:latest
+FROM registry.gitlab.com/kiwix/kiwix-tools:3.7.0
 
 RUN apt-get update && apt-get install -y \
     ocrmypdf \
@@ -13,5 +13,6 @@ COPY entrypoint.sh /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
 
 ENTRYPOINT ["/app/entrypoint.sh"]
+
 
 
